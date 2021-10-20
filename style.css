@@ -1,0 +1,90 @@
+.button {
+    z-index: 1;
+    border-radius: 5px;
+    color: #fff;
+    border-color: #4b5053;
+    padding: 2px;
+    height: 30px;
+    width: 30px;
+    opacity: 0.5;
+    transition: 200ms all;
+    background-color: #4b5053;
+}
+
+.slider {
+    z-index: 1;
+    border-radius: 5px;
+    color: #fff;
+    border-color: #4b5053;
+    padding: 2px;
+    height: 30px;
+    width: 100px;
+    opacity: 0.5;
+    transition: 200ms all;
+    background-color: #4b5053;
+}
+
+.button:hover,
+.slider:hover {
+    opacity: 1;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: nowrap;
+    z-index: 1;
+    width: 100vw;
+    position: fixed;
+    padding: 10px;
+    align-items: center;
+    opacity: 0.1;
+}
+
+.menu:hover {
+    opacity: 1;
+}
+
+#canvas_holder {
+    width: 2000px;
+    height: 2000px;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    touch-action: none;
+    cursor: none;
+}
+
+#cursor_dot {
+    background-color: #fff;
+    border: solid 0;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    cursor: none;
+    pointer-events: none;
+}
+
+#cursor_dot_static {
+    border: solid 0;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    cursor: none;
+    pointer-events: none;
+    margin-left: 20px;
+}
+
+#sliders {
+    z-index: 2;
+}
+
+#theme_btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#opacity_slider {
+    display: none;
+}
