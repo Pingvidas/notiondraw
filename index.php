@@ -9,12 +9,13 @@ function generateRandomString($length = 20) {
     return $randomString;
 }
 $randStr = generateRandomString();
-$name = "sketches/sketch_" . $randStr . ".html";
+mkdir($_SERVER['DOCUMENT_ROOT'] . "/draw/sketches/" . $randStr);
+$name = "sketches/" . $randStr . "/index.html";
 $content = file_get_contents("template_sketch.html");
 if (!file_exists($name)) { $handle = fopen($name,'w+'); fwrite($handle,$content); fclose($handle); }
 $handle = fopen($name,'a');
 fwrite($handle, '<span style="display: none;" id="id">' . $name . '</span>');
 fclose($handle);
-header('Location: ' . $name);
+header('Location: ' . 'http://penguido.com/draw/sketches/' . $randStr);
 exit();
 ?>

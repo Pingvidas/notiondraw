@@ -10,8 +10,6 @@ $data = base64_decode($data);
 
 // print_r($data);
 
-// mkdir($_SERVER['DOCUMENT_ROOT'] . "/draw/photos/");
-
-file_put_contents($_SERVER['DOCUMENT_ROOT'] . "/draw/canvases/" . $id . '.png', $data);
+file_put_contents($_SERVER['DOCUMENT_ROOT'] . "/draw/sketches/" . $id . '/canvas.png', $data);
 die;
 ?>

@@ -1,2 +1,2 @@
-sketches/*.html
+sketches/*/
 canvases/*.png

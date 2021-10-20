@@ -71,9 +71,9 @@ window.onload = start;
 document.getElementById('save_btn').onclick = saveSketch;
 
 function checkid(ev) {
-    sketch_id = document.getElementById('id').innerHTML.substr(16, 20);
+    sketch_id = document.getElementById('id').innerHTML.substr(9, 20);
     sketch_location = document.getElementById('id').innerHTML;
-    let idt = `/draw/canvases/${sketch_id}.png` || null;
+    let idt = `http://www.penguido.com/draw/sketches/${sketch_id}/canvas.png` || null;
     if (idt !== null) {
         var img = new Image;
         img.src = idt;
@@ -85,7 +85,6 @@ function checkid(ev) {
 
 function saveSketch() {
     let dataURL = canvas.toDataURL('image/png');
-
     let url = '/draw/sketch.php';
     $.ajax({
         type: 'POST',
@@ -138,6 +137,7 @@ function update_dot(ev) {
 
 function start(ev) {
     checkid(ev);
+    saveSketch();
     update_dot(ev);
 }
 
