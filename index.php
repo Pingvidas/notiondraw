@@ -11,6 +11,9 @@ function generateRandomString($length = 20) {
 $name = "sketches/sketch_" . generateRandomString() . ".html";
 $content = file_get_contents("template_sketch.html");
 if (!file_exists($name)) { $handle = fopen($name,'w+'); fwrite($handle,$content); fclose($handle); }
+$handle = fopen($name,'a');
+fwrite($handle, '<span style="display: none;" id="id">' . $name . '</span>');
+fclose($handle);
 header('Location: ' . $name);
 exit();
 ?>

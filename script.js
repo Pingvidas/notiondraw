@@ -1,3 +1,7 @@
+let sketch_id = '';
+let sketch_location = '';
+// let sketch_id = document.getElementById('id').innerHTML.substr(16, 36);
+
 document.getElementsByTagName("body")[0].style.backgroundColor = "#2F3437";
 // create canvas element and append it to document body
 let canvas = document.createElement("canvas");
@@ -60,7 +64,30 @@ let lastX = 0,
 let dot = document.getElementById("cursor_dot");
 dot.style.zIndex = 4;
 
-window.onload = update_dot;
+window.onload = start;
+
+window.onunload = saveSketch;
+// window.onbeforeunload = saveSketch;
+
+function checkid(ev) {
+    sketch_id = document.getElementById('id').innerHTML.substr(16, 20);
+    sketch_location = document.getElementById('id').innerHTML;
+    let idt = localStorage.getItem(sketch_id) || null;
+    if (idt !== null) {
+        var dataURL = localStorage.getItem(sketch_id);
+        var img = new Image;
+        img.src = dataURL;
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0);
+        };
+    }
+}
+
+function saveSketch() {
+    localStorage.setItem(sketch_id, canvas.toDataURL());
+    console.log(localStorage)
+}
+
 document.getElementById("width_slider").oninput = update_dot;
 document.getElementById("color_btn").oninput = update_dot;
 document.getElementById("opacity_slider").oninput = update_dot;
@@ -98,6 +125,11 @@ function update_dot(ev) {
     dot_static.style.width = dot.style.width;
     dot_static.style.backgroundColor = document.getElementById("color_btn").value;
     dot_static.style.opacity = document.getElementById("opacity_slider").value;
+}
+
+function start(ev) {
+    checkid(ev);
+    update_dot(ev);
 }
 
 function toolPen(ev) {
