@@ -137,7 +137,7 @@ function update_dot(ev) {
 
 function start(ev) {
     checkid(ev);
-    saveSketch();
+    // saveSketch();
     update_dot(ev);
 }
 
