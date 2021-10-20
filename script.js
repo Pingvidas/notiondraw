@@ -66,17 +66,17 @@ dot.style.zIndex = 4;
 
 window.onload = start;
 
-window.onunload = saveSketch;
-// window.onbeforeunload = saveSketch;
+// window.addEventListener('blur', saveSketch);
+// document.body.addEventListener('unload', saveSketch);
+document.getElementById('save_btn').onclick = saveSketch;
 
 function checkid(ev) {
     sketch_id = document.getElementById('id').innerHTML.substr(16, 20);
     sketch_location = document.getElementById('id').innerHTML;
-    let idt = localStorage.getItem(sketch_id) || null;
+    let idt = `/draw/canvases/${sketch_id}.png` || null;
     if (idt !== null) {
-        var dataURL = localStorage.getItem(sketch_id);
         var img = new Image;
-        img.src = dataURL;
+        img.src = idt;
         img.onload = function() {
             ctx.drawImage(img, 0, 0);
         };
@@ -84,8 +84,17 @@ function checkid(ev) {
 }
 
 function saveSketch() {
-    localStorage.setItem(sketch_id, canvas.toDataURL());
-    console.log(localStorage)
+    let dataURL = canvas.toDataURL('image/png');
+
+    let url = '/draw/sketch.php';
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            sketch: dataURL,
+            id: sketch_id
+        }
+    })
 }
 
 document.getElementById("width_slider").oninput = update_dot;
@@ -217,6 +226,7 @@ function up_handler(ev) {
     ev.preventDefault();
     onTrack = 0;
     document.getElementById("menu").style.zIndex = "1";
+    saveSketch();
 }
 
 function init() {

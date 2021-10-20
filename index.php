@@ -8,7 +8,8 @@ function generateRandomString($length = 20) {
     }
     return $randomString;
 }
-$name = "sketches/sketch_" . generateRandomString() . ".html";
+$randStr = generateRandomString();
+$name = "sketches/sketch_" . $randStr . ".html";
 $content = file_get_contents("template_sketch.html");
 if (!file_exists($name)) { $handle = fopen($name,'w+'); fwrite($handle,$content); fclose($handle); }
 $handle = fopen($name,'a');
